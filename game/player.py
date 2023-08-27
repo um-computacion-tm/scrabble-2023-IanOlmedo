@@ -11,9 +11,9 @@ class Player:
         self.board = None  
 
     @property
-    def rack(self):
-        return self.tiles
-
+    def rack(self):           #rack y permite acceder al atributo tiles de 
+        return self.tiles     #la instancia de la clase Player como si fuera una propiedad.
+        
     def validate_word(self, word):
         word_letters = list(word)
         rack_letters = [tile.letter for tile in self.tiles]
