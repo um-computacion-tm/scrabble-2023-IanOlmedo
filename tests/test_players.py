@@ -1,7 +1,11 @@
 import unittest
-from game.models import Tile
 from game.player import Player
+from game.models import Tile
+from unittest.mock import Mock
 
+class MockCell:
+    def __init__(self, calculated_value):
+        self.calculated_value = calculated_value
 
 class TestPlayer(unittest.TestCase):
     def test_init(self):
@@ -30,6 +34,14 @@ class TestPlayer(unittest.TestCase):
         player = Player('Frank')
         player.pass_turn()  
 
+    def test_get_score(self):
+        player= Player('Charlie')
+        player.board = Mock()  # Crea un objeto Mock para simular el tablero
+        mock_cell_1 = MockCell(3)
+        mock_cell_2 = MockCell(2)
+        player.board.played_cells = [mock_cell_1, mock_cell_2]
+
+        self.assertEqual(player.get_score(), 5)  # Total calculated value: 3 + 2 = 5
 
 class MockCell:
     def __init__(self, value):

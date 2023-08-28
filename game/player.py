@@ -1,19 +1,21 @@
 from game.models import Tile
 
-class MockCell:
-    def __init__(self, calculated_value):
-        self.calculated_value = calculated_value #crea una instancia de celda ficticia
-
 class Player:
     def __init__(self, name):
         self.name = name
         self.tiles = []
-        self.board = None  
+        self.board = None
 
     @property
-    def rack(self):           #rack y permite acceder al atributo tiles de 
-        return self.tiles     #la instancia de la clase Player como si fuera una propiedad.
-        
+    def rack(self):
+        return self.tiles
+
+    def get_score(self):
+        total_score = 0
+        for cell in self.board.played_cells:
+            total_score += cell.calculate_value()
+        return total_score
+
     def validate_word(self, word):
         word_letters = list(word)
         rack_letters = [tile.letter for tile in self.tiles]
@@ -24,7 +26,6 @@ class Player:
             rack_letters.remove(letter)
 
         return True
-    
 
     def pass_turn(self):
         pass
