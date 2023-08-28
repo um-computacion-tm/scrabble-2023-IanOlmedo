@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2023-08-27
+
+### Added
+
+-I defined a new method inside the Player class called "get_score" and added to this its test in the TestPlayer class
+-Add new methods for the Cell class (is_empty, has_letter, apply_word_multiplier and apply_letter_multiplier)
+-I defined the Board class with a constructor and a Test
+
 ## [0.0.3] - 2023-08-27
 
 ### Added
