@@ -2,7 +2,6 @@ import unittest
 from game.cell import Cell
 from game.models import Tile
 
-
 class TestCell(unittest.TestCase):
     def test_init(self):
         cell = Cell(multiplier=2, multiplier_type='letter')
@@ -81,4 +80,13 @@ class TestCell(unittest.TestCase):
         cell.apply_letter_multiplier(3)
         self.assertEqual(cell.multiplier, 2)
 
+    def test_add_player_starting_position(self):
+        cell = Cell(multiplier=1, multiplier_type='')
+        player = "Player 1"
+        cell.add_player_starting_position(player)
+        self.assertTrue(cell.is_starting_position)
+        self.assertEqual(cell.player_starting_position, player)
+
+if __name__ == '__main__':
+    unittest.main()
 
