@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] - 2023-08-29
+
+### Added
+
+Define the Scrabble class with a constructor and its respective tests
+
 ## [0.0.5] - 2023-08-29
 
 ### Added
