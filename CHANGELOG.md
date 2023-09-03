@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 2023-09-03
+
+### Changed
+
+Modify Cell, Player class and update commands inside codeclimate, circle and modify readme file
+
 ## [0.0.6] - 2023-08-29
 
 ### Added
