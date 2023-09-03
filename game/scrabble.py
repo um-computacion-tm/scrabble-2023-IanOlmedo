@@ -10,3 +10,11 @@ class Scrabble:
         self.players = []
         for _ in range(players_count):
             self.players.append(Player("Laura"))
+        self.turn = 0
+
+    def playing(self):
+        return True
+    
+    def next_turn(self):
+        self.turn += 1
+
