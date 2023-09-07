@@ -7,13 +7,13 @@ class Cell:
         self.letter = None
         self.is_starting_position = False
         self.player_starting_position = None
-        self.active = True  # Agrega el atributo `active` y establece su valor en True
+        self.active = True
 
     def add_letter(self, letter: Tile):
         self.letter = letter
 
     def calculate_value(self):
-        if not self.active:  # Si la celda no está activa, su valor es 0
+        if not self.active:
             return 0
         if self.letter is None:
             return 0
@@ -39,4 +39,3 @@ class Cell:
     def apply_letter_multiplier(self, letter_multiplier):
         if self.multiplier_type == 'letter':
             self.multiplier *= letter_multiplier
-

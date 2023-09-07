@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] - 2023-09-07
+
+### Added
+
+Define the new Calculate_word_value class along with the calculate method. And from these perform a test_simple
+
+### Changed
+
+Generate a couple of modifications to the cell class for the correct function of calculate_word_value
+
 ## [0.0.7] - 2023-09-03
 
 ### Changed
