@@ -87,6 +87,20 @@ class TestCell(unittest.TestCase):
         self.assertTrue(cell.is_starting_position)
         self.assertEqual(cell.player_starting_position, player)
 
+    def test_inactive_cell(self):
+        cell = Cell(multiplier=2, multiplier_type='letter')
+        letter = Tile(letter='p', value=3)
+        cell.add_letter(letter=letter)
+        
+        # Desactivamos la celda
+        cell.active = False
+
+        # La celda inactiva debe tener un valor de 0 independientemente de su contenido
+        self.assertEqual(
+            cell.calculate_value(),
+            0,
+        )
+
 if __name__ == '__main__':
     unittest.main()
 

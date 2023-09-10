@@ -13,10 +13,7 @@ class Board:
 
         if (orientation == "H" and col + word_length <= 15) or (orientation == "V" and row + word_length <= 15):
             return True
-
-        return False
-
-
+        
     def validate_word_out_of_board(self, word, location, orientation):
         return not self.validate_word_inside_board(word, location, orientation)
 

@@ -45,6 +45,8 @@ class TestBoard(unittest.TestCase):
 
         self.assertTrue(word_is_valid)
 
+    
+
 
 if __name__ == '__main__':
     unittest.main()
