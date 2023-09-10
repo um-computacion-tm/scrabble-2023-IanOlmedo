@@ -11,12 +11,8 @@ class Board:
         row, col = location
         word_length = len(word)
 
-        if orientation == "H":
-            if col + word_length <= 15:
-                return True
-        elif orientation == "V":
-            if row + word_length <= 15:
-                return True
+        if (orientation == "H" and col + word_length <= 15) or (orientation == "V" and row + word_length <= 15):
+            return True
 
         return False
 
