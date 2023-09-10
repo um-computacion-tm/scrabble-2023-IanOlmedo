@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.10] - 2023-09-10
+
+### Added
+
+We added new tests for board and new methods to satisfy them (within the Board class
+
 ## [0.0.9] - 2023-09-09
 
 ### Changed

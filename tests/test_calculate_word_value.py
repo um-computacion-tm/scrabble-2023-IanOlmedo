@@ -33,6 +33,20 @@ class TestsCalculateWordValue(unittest.TestCase):
 
         value = Calculate_word_value.calculate(word)
         self.assertEqual(value, 5)
+
+    def test_with_word_multiplier(self):
+        word = [
+            Cell(multiplier=1, multiplier_type='letter'),
+            Cell(multiplier=1, multiplier_type='letter'),
+            Cell(multiplier=2, multiplier_type='word'),  # Usamos multiplier_type 'word'
+            Cell(multiplier=1, multiplier_type='letter'),
+        ]
+        letters = ["C", "A", "S", "A"]
+        for i, cell in enumerate(word):
+            cell.add_letter(Tile(letter=letters[i], value=1))
+
+        value = Calculate_word_value.calculate(word)
+        self.assertEqual(value, 8)
 """
 
     def test_with_word_multiplier(self):
