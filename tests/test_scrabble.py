@@ -16,13 +16,14 @@ class TestScrabbleGame(unittest.TestCase):
         game_started = scrabble_game.playing()
         self.assertTrue(game_started)
     
-    """def test_next_turn_when_game_is_starting(self):
-        #Validar que al comienzo, el turno es del jugador 0
+    def test_next_turn_when_game_is_starting(self):
+        # Validar que al comienzo, el turno es del jugador 0
         scrabble_game = Scrabble(players_count=3)
 
         scrabble_game.next_turn()
 
         assert scrabble_game.current_player == scrabble_game.players[0]
+
 
 
     def test_next_turn_when_player_is_not_the_first(self):
@@ -42,7 +43,33 @@ class TestScrabbleGame(unittest.TestCase):
         scrabble_game.next_turn()
 
         assert scrabble_game.current_player == scrabble_game.players[0]
-"""
+
+    def test_validate_word_simple(self):
+        # Prueba simple para validar_word
+        scrabble_game = Scrabble(players_count=3)
+        scrabble_game.current_player = scrabble_game.players[0]
+
+        word = "HELLO"
+        location = (7, 7)
+        orientation = "H"
+
+        is_valid = scrabble_game.validate_word(word, location, orientation)
+
+        self.assertTrue(is_valid)
+
+    def test_get_words_simple(self):
+        # Prueba simple para get_words
+        scrabble_game = Scrabble(players_count=3)
+        scrabble_game.current_player = scrabble_game.players[0]
+
+        location = (7, 7)
+        orientation = "H"
+
+        words = scrabble_game.get_words(location, orientation)
+
+        self.assertIsNotNone(words)
+        self.assertIsInstance(words, list)
+
 if __name__ == '__main__':
     unittest.main()
 
