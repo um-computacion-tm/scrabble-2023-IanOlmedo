@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.12] - 2023-09-12
+
+### Added
+
+We implement the new main class along with its valid_player_count, get_player_county play methods, and also with its tests.
+
 ## [0.0.11] - 2023-09-11
 
 ### Added
