@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.13] - 2023-09-13
+
+### Added
+
+Within the board class we added new methods to corroborate the place of the words and together with these respective tests that do not work at the moment.
+
 ## [0.0.12] - 2023-09-12
 
 ### Added
