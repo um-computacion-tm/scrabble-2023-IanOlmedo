@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.14] - 2023-09-16
+
+### Added
+
+We define new methods to the board class to validate some of the tests performed in the class (test_validate_word_inside_board_vertical_valid, test_validate_word_out_of_board_horizontal_valid...)
+
 ## [0.0.13] - 2023-09-13
 
 ### Added
