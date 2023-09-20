@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.15] - 2023-09-16
+
+### Added
+
+We added the new tests test_calculate_word_value_with_no_multiplier, test_validate_word_out_of_board_horizontal_false, test_validate_word_inside_board_horizontal_false and modified some of the existing ones.
+
+### Changed
+
+We change calculate_word_value inside the Board class
+
+## [0.0.15] - 2023-09-16
+
+### Changed
+
+Change the validate_word_place_board method of the Board class so that test_board tests are validated
+
 ## [0.0.14] - 2023-09-16
 
 ### Added

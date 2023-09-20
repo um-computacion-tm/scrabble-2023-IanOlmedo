@@ -46,14 +46,39 @@ class Board:
         return True
 
     @staticmethod
-    def calculate_word_value(word: list[Cell]) -> int:
+    def calculate_word_value(word: list[Tile]) -> int:
         value: int = 0
-        multiplier_word = None
-        for cell in word:
-            value = value + cell.calculate_value()
-            if cell.multiplier_type == "word" and cell.active:
-                multiplier_word = cell.multiplier
-        if multiplier_word:
-            value = value * multiplier_word
+        for tile in word:
+            value += tile.value
         return value
+
+
+    def validate_word_place_board(self, word, location, orientation):
+        position_x, position_y = location
+        word_length = len(word)
+
+        if orientation == "H":
+            # Verificar si la palabra cabe horizontalmente en el tablero y no colisiona con letras existentes
+            if position_x + word_length <= 15:
+                for i in range(word_length):
+                    if not self.grid[position_x + i][position_y].is_empty():
+                        return False
+                return True
+        elif orientation == "V":
+            # Verificar si la palabra cabe verticalmente en el tablero y no colisiona con letras existentes
+            if position_y + word_length <= 15:
+                for i in range(word_length):
+                    if not self.grid[position_x][position_y + i].is_empty():
+                        return False
+                return True
+
+        return False
+
+
+
+
+
+
+
+
 
