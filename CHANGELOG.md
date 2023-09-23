@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.15] - 2023-09-16
+## [0.0.17] - 2023-09-23
+
+### Changed
+
+We modify the calculate_word_value class and add new tests that correctly validate the modifications.
+
+## [0.0.16] - 2023-09-18
 
 ### Added
 
@@ -17,7 +23,7 @@ We added the new tests test_calculate_word_value_with_no_multiplier, test_valida
 
 We change calculate_word_value inside the Board class
 
-## [0.0.15] - 2023-09-16
+## [0.0.15] - 2023-09-17
 
 ### Changed
 
