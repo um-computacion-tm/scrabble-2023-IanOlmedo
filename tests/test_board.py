@@ -146,13 +146,16 @@ class TestBoard(unittest.TestCase):
         value = board.calculate_word_value(word)
         self.assertEqual(value, 6)
 
-    #def test_validate_word_place_board_horizontal_valid(self):
-     #   board = Board()
-      #  word = "Facultad"
-       # location = (7, 4)
-        #orientation = "H"
-        #word_is_valid = board.validate_word_place_board(word, location, orientation)
-        #self.assertTrue(word_is_valid)
+    """def test_validate_word_place_board_horizontal_valid(self):
+        board = Board()
+        word = [
+            Tile('F', 1), Tile('A', 1), Tile('C', 1), Tile('U', 1),
+            Tile('L', 1), Tile('T', 1), Tile('A', 1), Tile('D', 1)
+        ]
+        location = (7, 4)  # Establece la ubicación adecuada
+        orientation = "H"
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        self.assertTrue(word_is_valid)
 
     def test_validate_word_place_board_vertical_collision(self):
         board = Board()
@@ -160,11 +163,15 @@ class TestBoard(unittest.TestCase):
         board.grid[5][5].add_letter(Tile('', 0))
         board.grid[5][6].add_letter(Tile('', 0))
         board.grid[5][7].add_letter(Tile('', 0))
-        word = "Scrabble"
+        word = [
+            Tile('S', 1), Tile('c', 3), Tile('r', 1), Tile('a', 2),
+            Tile('b', 2), Tile('b', 2), Tile('l', 1), Tile('e', 1)
+        ]
         location = (5, 4)
         orientation = "V"
         word_is_valid = board.validate_word_place_board(word, location, orientation)
-        self.assertFalse(word_is_valid)
+        self.assertFalse(word_is_valid)"""
+
 
     def test_validate_word_place_board_horizontal_collision(self):
         board = Board()

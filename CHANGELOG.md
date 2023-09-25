@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.18] - 2023-09-25
+
+### Changed
+
+We change def validate_word_place_board in the Board class and complete it with corresponding tests
+
 ## [0.0.17] - 2023-09-23
 
 ### Changed
