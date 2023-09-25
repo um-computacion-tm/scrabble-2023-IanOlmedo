@@ -1,96 +1,54 @@
 import unittest
-from game.calculate_word_value import Calculate_word_value
 from game.cell import Cell
 from game.models import Tile
+from game.calculate_word_value import CalculateWordValue
 
-class TestsCalculateWordValue(unittest.TestCase):
-    def test_simple(self):
+class TestCalculateWordValue(unittest.TestCase):
+    def test_calculate_word_value(self):
         word = [
-            Cell(multiplier=1, multiplier_type='letter'),
-            Cell(multiplier=1, multiplier_type='letter'),
-            Cell(multiplier=1, multiplier_type='letter'),
-            Cell(multiplier=1, multiplier_type='letter'),
+            Cell(letter=Tile('C', 3), multiplier=2, multiplier_type='letter'),
+            Cell(letter=Tile('A', 1)),
+            Cell(letter=Tile('S', 1)),
+            Cell(letter=Tile('A', 1))
         ]
-        
-        letters = ["C", "A", "S", "A"]
-        for i, cell in enumerate(word):
-            cell.add_letter(Tile(letter=letters[i], value=1))
-
-        value = Calculate_word_value.calculate(word)
-        self.assertEqual(value, 4)  
-
-
-    def test_with_letter_multiplier(self):
-        word = [
-            Cell(multiplier=1, multiplier_type='letter'),
-            Cell(multiplier=1, multiplier_type='letter'),
-            Cell(multiplier=2, multiplier_type='letter'),  # Usar multiplier y multiplier_type en lugar de letter y value
-            Cell(multiplier=1, multiplier_type='letter'),
-        ]
-        letters = ["C", "A", "S", "A"]
-        for i, cell in enumerate(word):
-            cell.add_letter(Tile(letter=letters[i], value=1))
-
-        value = Calculate_word_value.calculate(word)
-        self.assertEqual(value, 5)
+        value = CalculateWordValue.calculate_word_value(word)
+        self.assertEqual(value, 9)
 
     def test_with_word_multiplier(self):
         word = [
-            Cell(multiplier=1, multiplier_type='letter'),
-            Cell(multiplier=1, multiplier_type='letter'),
-            Cell(multiplier=2, multiplier_type='word'),  # Usamos multiplier_type 'word'
-            Cell(multiplier=1, multiplier_type='letter'),
+            Cell(letter=Tile('C', 3), multiplier=2, multiplier_type='word'),
+            Cell(letter=Tile('A', 1)),
+            Cell(letter=Tile('S', 1)),
+            Cell(letter=Tile('A', 1))
         ]
-        letters = ["C", "A", "S", "A"]
-        for i, cell in enumerate(word):
-            cell.add_letter(Tile(letter=letters[i], value=1))
+        for cell in word:
+            cell.active = True
 
-        value = Calculate_word_value.calculate(word)
-        self.assertEqual(value, 8)
-"""
+        value = CalculateWordValue.calculate_word_value(word)
+        self.assertEqual(value, 12)
 
-    def test_with_word_multiplier(self):
+    def test_with_word_multiplier_false_0(self):
         word = [
-            Cell(letter=Tile("C", 1)),
-            Cell(letter=Tile("A", 1)),
-            Cell(letter=Tile("S", 2), multiplier=2, multiplier_type="word"),
-            Cell(letter=Tile("A", 1)),
+            Cell(letter=Tile('C', 3), multiplier=2, multiplier_type='word'),
+            Cell(letter=Tile('A', 1)),
+            Cell(letter=Tile('S', 1)),
+            Cell(letter=Tile('A', 1))
         ]
-        value = Calculate_word_value.calculate(word)
-        self.assertEqual(value, 10)
+        for cell in word:
+            cell.active = False
+
+        value = CalculateWordValue.calculate_word_value(word)
+        self.assertEqual(value, 0)
 
     def test_with_letter_word_multiplier(self):
         word = [
-            Cell(letter=Tile("C", 1), multiplier=3, multiplier_type="letter"),
-            Cell(letter=Tile("A", 1)),
-            Cell(letter=Tile("S", 2), multiplier=2, multiplier_type="word"),
-            Cell(letter=Tile("A", 1)),
+            Cell(letter=Tile('C', 3), multiplier=2, multiplier_type='letter'),
+            Cell(letter=Tile('A', 1)),
+            Cell(letter=Tile('S', 1)),
+            Cell(letter=Tile('A', 1), multiplier=2, multiplier_type='word')
         ]
-        value = Calculate_word_value.calculate(word)
-        self.assertEqual(value, 14)
+        value = CalculateWordValue.calculate_word_value(word)
+        self.assertEqual(value, 18)
 
-        
-    def test_with_letter_word_multiplier_active(self):
-        word = [
-            Cell(letter=Tile("C", 1), multiplier=3, multiplier_type="letter"),
-            Cell(letter=Tile("A", 1)),
-            Cell(letter=Tile("S", 2), multiplier=2, multiplier_type="word"),
-            Cell(letter=Tile("A", 1)),
-        ]
-        for index in range(4):
-            word[index].active = False
-        value = Calculate_word_value.calculate(word)
-        self.assertEqual(value, 10)
-
-    def test_with_letter_word_multiplier_no_active(self):
-        word = [
-            Cell(letter=Tile("C", 1), multiplier=3, multiplier_type="letter"),
-            Cell(letter=Tile("A", 1)),
-            Cell(letter=Tile("S", 2), multiplier=2, multiplier_type="word"),
-            Cell(letter=Tile("A", 1)),
-        ]
-        value = Calculate_word_value.calculate(word)
-        self.assertEqual(value, 5)"""
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
