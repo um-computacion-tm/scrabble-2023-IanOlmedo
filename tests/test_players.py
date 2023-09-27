@@ -49,6 +49,8 @@ class MockCell:
 
     def calculate_value(self): #simula el cálculo del valor de la celda. 
         return self.value
+    
+    
 
 
 if __name__ == '__main__':

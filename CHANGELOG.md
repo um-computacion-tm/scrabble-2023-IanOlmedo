@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.19] - 2023-09-27
+
+### Added
+
+We add a text file with all the words that the scrabble game can contain, we add a new class called Dictionary and together with it we create its tests.
+
 ## [0.0.18] - 2023-09-25
 
 ### Changed
