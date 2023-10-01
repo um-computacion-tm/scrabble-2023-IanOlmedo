@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-10-01
+
+### Added
+
+We defined a new is_empty method inside the Board class but there are still problems with validating 2 tests
+
 ## [0.0.19] - 2023-09-27
 
 ### Added

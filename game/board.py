@@ -51,8 +51,8 @@ class Board:
         for tile in word:
             value += tile.value
         return value
-
-# En la función validate_word_place_board en board.py
+    
+        # En la función validate_word_place_board en board.py
     def validate_word_place_board(self, word, location, orientation):
         position_x, position_y = location
         word_length = len(word)
@@ -75,6 +75,17 @@ class Board:
                 return True
 
         return False
+
+    @property
+    def is_empty(self):
+        # Verificar si el tablero está completamente vacío
+        for row in self.grid:
+            for cell in row:
+                if not cell.is_empty() or cell.letter is not None:
+                    return False
+        return True
+
+
 
 
 

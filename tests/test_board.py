@@ -29,9 +29,10 @@ class TestBoard(unittest.TestCase):
 
         self.assertFalse(word_is_valid)
 
-   # def test_board_is_empty(self):
-        #board = Board()
-        #self.assertTrue(board.is_empty)
+    def test_is_empty(self):
+        board = Board()
+        self.assertFalse(board.is_empty)         #####<------ojo
+
 
     def test_board_is_not_empty(self):
         board = Board()
@@ -164,8 +165,8 @@ class TestBoard(unittest.TestCase):
         board.grid[5][6].add_letter(Tile('', 0))
         board.grid[5][7].add_letter(Tile('', 0))
         word = [
-            Tile('S', 1), Tile('c', 3), Tile('r', 1), Tile('a', 2),
-            Tile('b', 2), Tile('b', 2), Tile('l', 1), Tile('e', 1)
+            Tile('S', 1), Tile('C', 3), Tile('R', 1), Tile('A', 2),
+            Tile('B', 2), Tile('B', 2), Tile('L', 1), Tile('E', 1)
         ]
         location = (5, 4)
         orientation = "V"
