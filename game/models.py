@@ -1,9 +1,10 @@
 import random
 
 class Tile:
-    def __init__(self, letter, value):
-        self.letter = letter
+    def __init__(self, letter='', value=0):
+        self.letter = str(letter)
         self.value = value
+
 
 class BagTiles:
     def __init__(self):
