@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2023-10-04
+
+### Changed
+
+Change the Board class from scratch, add new methods with cell multipliers, validate if the words are inside or outside the board, etc.
+
 ## [0.2.0] - 2023-10-01
 
 ### Added
