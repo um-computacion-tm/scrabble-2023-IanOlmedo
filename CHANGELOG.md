@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.3] - 2023-10-06
+
+### Changed
+
+I fixed what didn't work within the main function and created the show_board functions and in scrabble I added the calculate_words_value and dict_validate_word methods
+
+## [0.2.2] - 2023-10-05
+
+### Changed
+
+Try to replace the main code that the teacher sent and his tests
+
 ## [0.2.1] - 2023-10-04
 
 ### Changed

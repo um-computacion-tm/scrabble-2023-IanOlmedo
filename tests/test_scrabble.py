@@ -24,8 +24,6 @@ class TestScrabbleGame(unittest.TestCase):
 
         assert scrabble_game.current_player == scrabble_game.players[0]
 
-
-
     def test_next_turn_when_player_is_not_the_first(self):
         #Validar que luego del jugador 0, le toca al jugador 1
         scrabble_game = Scrabble(players_count=3)

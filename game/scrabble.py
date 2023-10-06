@@ -1,6 +1,12 @@
 from game.board import Board
 from game.player import Player
 from game.models import BagTiles
+from game.calculate_word_value import CalculateWordValue
+from game.dictionary import Dictionary
+class InvalidWordException(Exception):
+    pass
+class InvalidPlaceWordException(Exception):
+    pass
 
 class Scrabble:
     def __init__(self, players_count):
@@ -27,13 +33,31 @@ class Scrabble:
             self.current_player = self.players[next_index]
 
     def validate_word(self, word, location, orientation):
-        # Lógica para validar la palabra en la ubicación y orientación proporcionadas
-        # Agregar la validación de las letras del jugador y si la palabra cabe en el tablero
-        return True  # Debe implementarse la lógica real aquí
+        if not self.dict_validate_word(word):
+            raise InvalidWordException("Su palabra no existe en el diccionario")
+        if not self.board.validate_word_inside_board(word, location, orientation):
+            raise InvalidPlaceWordException("Su palabra excede el tablero")
+        if not self.board.validate_word_place_board(word, location, orientation):
+            raise InvalidPlaceWordException("Su palabra esta mal puesta en el tablero")
 
     def get_words(self, location, orientation):
         # Lógica para obtener las posibles palabras que se pueden formar en la ubicación y orientación proporcionadas
         # Agregar la generación de palabras según las reglas del juego
         return []  # Debe implementarse la lógica real aquí
+
+    def play(self, word, location, orientation):
+        self.validate_word(word, location, orientation)
+        words = self.board.put_words(word, location, orientation)
+        total = self.calculate_words_value(words)
+        self.players[self.current_player].score += total
+        self.next_turn()
+
+    def calculate_words_value(self, word):
+        cal = CalculateWordValue()
+        return cal.calculate_word_value(word)
+        
+    def dict_validate_word(self, word):
+        dict = Dictionary()
+        return dict.verify_word(word)
 
 
