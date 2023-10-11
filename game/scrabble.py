@@ -40,10 +40,37 @@ class Scrabble:
         if not self.board.validate_word_place_board(word, location, orientation):
             raise InvalidPlaceWordException("Su palabra esta mal puesta en el tablero")
 
-    def get_words(self, location, orientation):
-        # Lógica para obtener las posibles palabras que se pueden formar en la ubicación y orientación proporcionadas
-        # Agregar la generación de palabras según las reglas del juego
-        return []  # Debe implementarse la lógica real aquí
+    def get_words(self, word, location, orientation):
+        words = []  # Lista para almacenar las palabras válidas
+
+        position_x, position_y = location
+        word_length = len(word)
+
+        if orientation == "H":
+            for i in range(word_length):
+                current_x, current_y = position_x + i, position_y
+                current_tile = self.board.grid[current_x][current_y]
+
+                # Verifica si hay una letra en la celda o si es una celda vacía
+                if current_tile.letter is None:
+                    # Obtén la palabra horizontal que se puede formar con esta celda vacía
+                    horizontal_word = self.get_horizontal_word(current_x, current_y)
+                    if len(horizontal_word) > 1:  # Debe tener al menos 2 letras
+                        words.append(horizontal_word)
+        elif orientation == "V":
+            for i in range(word_length):
+                current_x, current_y = position_x, position_y + i
+                current_tile = self.board.grid[current_x][current_y]
+
+                # Verifica si hay una letra en la celda o si es una celda vacía
+                if current_tile.letter is None:
+                    # Obtén la palabra vertical que se puede formar con esta celda vacía
+                    vertical_word = self.get_vertical_word(current_x, current_y)
+                    if len(vertical_word) > 1:  # Debe tener al menos 2 letras
+                        words.append(vertical_word)
+
+        return words
+
 
     def play(self, word, location, orientation):
         self.validate_word(word, location, orientation)
@@ -59,5 +86,3 @@ class Scrabble:
     def dict_validate_word(self, word):
         dict = Dictionary()
         return dict.verify_word(word)
-
-

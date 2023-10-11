@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.4] - 2023-10-09
+
+### Added
+
+On the other hand, complete the get_words method of the Scrabble class
+
+### Changed
+
+Update the main.py class, define the show_player function and modify get_playe_count next to show Board
+
 ## [0.2.3] - 2023-10-06
 
 ### Changed
