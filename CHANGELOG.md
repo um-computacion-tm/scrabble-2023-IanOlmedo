@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.5] - 2023-10-12
+
+### Added
+
+We added new methods within the Scrabble class: is_playing, get_current_player and get_horizontal_word
+
+### Changed
+
+It was necessary to change the get_words method within the Scrabble class
+
 ## [0.2.4] - 2023-10-09
 
 ### Added

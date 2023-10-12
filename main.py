@@ -4,6 +4,30 @@ def show_player(player_name, player_score):
     print(f"Jugador: {player_name}")
     print(f"Puntuación: {player_score}")      ## <----revisar
 
+def get_inputs():
+    while True:
+        word = input("Ingrese la palabra que desea jugar: ").strip().upper()
+        coords = input("Ingrese las coordenadas (Ejemplo: 'A1') donde desea colocar la palabra: ").strip().upper()
+        orientation = input("Ingrese la orientación (H para horizontal, V para vertical): ").strip().upper()
+
+        if len(coords) != 2:
+            print("Coordenadas deben tener un formato válido, por ejemplo, 'A1'.")
+            continue
+
+        x, y = coords[0], coords[1]
+
+        if not (x.isalpha() and y.isdigit()):
+            print("Coordenadas deben tener un formato válido, por ejemplo, 'A1'.")
+            continue
+
+        x = ord(x) - ord('A')
+        y = int(y) - 1
+
+        if orientation not in ('H', 'V'):
+            print("Orientación debe ser 'H' (horizontal) o 'V' (vertical).")
+            continue
+
+        return word, (x, y), orientation
 
 def get_player_count():
     while True:

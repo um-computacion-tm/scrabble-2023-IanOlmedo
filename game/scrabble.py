@@ -32,6 +32,10 @@ class Scrabble:
             next_index = (current_index + 1) % len(self.players)
             self.current_player = self.players[next_index]
 
+    def dict_validate_word(self, word):
+        dict = Dictionary()
+        return dict.verify_word(word)
+
     def validate_word(self, word, location, orientation):
         if not self.dict_validate_word(word):
             raise InvalidWordException("Su palabra no existe en el diccionario")
@@ -40,36 +44,54 @@ class Scrabble:
         if not self.board.validate_word_place_board(word, location, orientation):
             raise InvalidPlaceWordException("Su palabra esta mal puesta en el tablero")
 
-    def get_words(self, word, location, orientation):
+    def get_words(self, location, orientation):
         words = []  # Lista para almacenar las palabras válidas
-
         position_x, position_y = location
-        word_length = len(word)
 
         if orientation == "H":
-            for i in range(word_length):
-                current_x, current_y = position_x + i, position_y
-                current_tile = self.board.grid[current_x][current_y]
+            for current_x in range(position_x, len(self.board.grid)):
+                current_tile = self.board.grid[current_x][position_y]
 
-                # Verifica si hay una letra en la celda o si es una celda vacía
                 if current_tile.letter is None:
-                    # Obtén la palabra horizontal que se puede formar con esta celda vacía
-                    horizontal_word = self.get_horizontal_word(current_x, current_y)
-                    if len(horizontal_word) > 1:  # Debe tener al menos 2 letras
+                    horizontal_word = self.get_horizontal_word(current_x, position_y)
+                    if len(horizontal_word) > 1:
                         words.append(horizontal_word)
-        elif orientation == "V":
-            for i in range(word_length):
-                current_x, current_y = position_x, position_y + i
-                current_tile = self.board.grid[current_x][current_y]
+                    else:
+                        break  # Rompe el bucle si no hay más celdas vacías en esta dirección
+                else:
+                    break  # Rompe el bucle si encuentra una letra
 
-                # Verifica si hay una letra en la celda o si es una celda vacía
+        elif orientation == "V":
+            for current_y in range(position_y, len(self.board.grid[position_x])):
+                current_tile = self.board.grid[position_x][current_y]
+
                 if current_tile.letter is None:
-                    # Obtén la palabra vertical que se puede formar con esta celda vacía
-                    vertical_word = self.get_vertical_word(current_x, current_y)
-                    if len(vertical_word) > 1:  # Debe tener al menos 2 letras
+                    vertical_word = self.get_vertical_word(position_x, current_y)
+                    if len(vertical_word) > 1:
                         words.append(vertical_word)
+                    else:
+                        break  # Rompe el bucle si no hay más celdas vacías en esta dirección
+                else:
+                    break  # Rompe el bucle si encuentra una letra
 
         return words
+    
+    def get_horizontal_word(self, start_x, y):
+        word = []
+        x = start_x
+
+        # Avanza hacia la izquierda para obtener las letras a la izquierda de la celda inicial
+        while x >= 0 and self.board.grid[x][y].letter:
+            word.insert(0, self.board.grid[x][y].letter.letter)
+            x -= 1
+
+        # Avanza hacia la derecha para obtener las letras a la derecha de la celda inicial
+        x = start_x + 1
+        while x < 15 and self.board.grid[x][y].letter:
+            word.append(self.board.grid[x][y].letter.letter)
+            x += 1
+
+        return ''.join(word)
 
 
     def play(self, word, location, orientation):
@@ -82,7 +104,10 @@ class Scrabble:
     def calculate_words_value(self, word):
         cal = CalculateWordValue()
         return cal.calculate_word_value(word)
-        
-    def dict_validate_word(self, word):
-        dict = Dictionary()
-        return dict.verify_word(word)
+
+    def get_current_player(self):
+        return self.players[self.turn]
+    
+    def is_playing(self):
+        # El juego sigue en curso mientras haya fichas en la bolsa y haya al menos un jugador con fichas restantes.
+        return not self.bag_tiles.is_empty() and any(player.has_tiles() for player in self.players)
