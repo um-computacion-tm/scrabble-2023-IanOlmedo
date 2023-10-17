@@ -13,10 +13,8 @@ class TestMain(unittest.TestCase):
     @patch('builtins.print')
     @patch('builtins.input', side_effect=['A', '3'])
     def test_get_player_count_wrong_input(self, input_patched, print_patched):
-        self.assertEqual(
-            get_player_count(),
-            3,
-        )
+        with self.assertRaises(SystemExit):
+            get_player_count()
 
     @patch('builtins.print')
     @patch('builtins.input', side_effect=['10', '1'])

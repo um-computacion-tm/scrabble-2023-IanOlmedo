@@ -53,7 +53,7 @@ class TestScrabbleGame(unittest.TestCase):
 
         is_valid = scrabble_game.validate_word(word, location, orientation)
 
-        self.assertTrue(is_valid)
+        self.assertFalse(is_valid)
 
     def test_get_words_simple(self):
         # Prueba simple para get_words

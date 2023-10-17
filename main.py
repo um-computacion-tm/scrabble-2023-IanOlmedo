@@ -2,7 +2,7 @@ from game.scrabble import Scrabble
 
 def show_player(player_name, player_score):
     print(f"Jugador: {player_name}")
-    print(f"Puntuación: {player_score}")      ## <----revisar
+    print(f"Puntuación: {player_score}")
 
 def get_inputs():
     while True:
@@ -10,18 +10,11 @@ def get_inputs():
         coords = input("Ingrese las coordenadas (Ejemplo: 'A1') donde desea colocar la palabra: ").strip().upper()
         orientation = input("Ingrese la orientación (H para horizontal, V para vertical): ").strip().upper()
 
-        if len(coords) != 2:
+        if len(coords) != 2 or not coords[0].isalpha() or not coords[1].isdigit():
             print("Coordenadas deben tener un formato válido, por ejemplo, 'A1'.")
             continue
 
-        x, y = coords[0], coords[1]
-
-        if not (x.isalpha() and y.isdigit()):
-            print("Coordenadas deben tener un formato válido, por ejemplo, 'A1'.")
-            continue
-
-        x = ord(x) - ord('A')
-        y = int(y) - 1
+        x, y = ord(coords[0]) - ord('A'), int(coords[1]) - 1
 
         if orientation not in ('H', 'V'):
             print("Orientación debe ser 'H' (horizontal) o 'V' (vertical).")
@@ -60,14 +53,12 @@ class Main:
             word, coords, orientation = get_inputs()
             try:
                 game.play(word, coords, orientation)
+            except game.scrabble.InvalidWordException as e:
+                print(f"Error: {e}")
+            except game.scrabble.InvalidPlaceWordException as e:
+                print(f"Error: {e}")
             except Exception as e:
-                print(e)
+                print(f"Error inesperado: {e}")
 
 if __name__ == '__main__':
     Main.main()
-
-
-
-
-
-    

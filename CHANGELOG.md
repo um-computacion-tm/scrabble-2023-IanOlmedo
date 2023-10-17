@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.6] - 2023-10-17
+
+### Changed
+
+We changed the functions within main.py to improve the structure and to make it more readable. The most modified were: get_inputs and get_player_count for better validation and show_board to make the board look more readable.
+(Errors need to be corrected within these changes)
+
+
 ## [0.2.5] - 2023-10-12
 
 ### Added
