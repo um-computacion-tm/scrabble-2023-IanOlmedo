@@ -25,13 +25,14 @@ def get_inputs():
 def get_player_count():
     while True:
         try:
-            player_count = int(input('Cantidad de jugadores (1-3): '))
-            if 1 <= player_count <= 3:
+            player_count = int(input('Cantidad de jugadores (2-4): '))
+            if 2 <= player_count <= 4:
                 return player_count
             else:
-                print('Por favor, ingrese un número entre 1 y 3.')
-        except ValueError:
-            print('Por favor, ingrese un número válido.')
+                raise ValueError("Por favor, ingrese un número entre 2 y 4.")
+        except ValueError as e:
+            print(f'Error: {e}')
+
 
 def show_board(board):
     print('\n  |' + ''.join([f' {str(row_index).rjust(2)} ' for row_index in range(15)]))

@@ -1,5 +1,6 @@
 import unittest
 from game.scrabble import Scrabble
+from game.scrabble import InvalidPlaceWordException, InvalidWordException
 
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):
@@ -51,9 +52,8 @@ class TestScrabbleGame(unittest.TestCase):
         location = (7, 7)
         orientation = "H"
 
-        is_valid = scrabble_game.validate_word(word, location, orientation)
-
-        self.assertFalse(is_valid)
+        with self.assertRaises(InvalidWordException):
+            is_valid = scrabble_game.validate_word(word, location, orientation)
 
     def test_get_words_simple(self):
         # Prueba simple para get_words
@@ -70,4 +70,6 @@ class TestScrabbleGame(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+        
 

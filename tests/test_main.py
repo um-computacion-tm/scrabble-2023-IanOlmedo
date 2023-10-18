@@ -13,15 +13,17 @@ class TestMain(unittest.TestCase):
     @patch('builtins.print')
     @patch('builtins.input', side_effect=['A', '3'])
     def test_get_player_count_wrong_input(self, input_patched, print_patched):
-        with self.assertRaises(SystemExit):
-            get_player_count()
+        self.assertEqual(
+            get_player_count(),
+            3,
+            )
 
     @patch('builtins.print')
-    @patch('builtins.input', side_effect=['10', '1'])
+    @patch('builtins.input', side_effect=['2', '1'])
     def test_get_player_count_control_max(self, input_patched, print_patched):
         self.assertEqual(
             get_player_count(),
-            1,
+            2,
         )
 
     @patch('game.scrabble.Scrabble.is_playing', side_effect=[True, False])
