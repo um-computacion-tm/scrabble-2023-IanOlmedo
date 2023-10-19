@@ -116,21 +116,3 @@ class Scrabble:
         return not self.bag_tiles.is_empty() and any(player.has_tiles() for player in self.players)
     
 
-    def get_player_count():
-        while True:
-            try:
-                player_count = int(input('Cantidad de jugadores (2-4): '))
-                if 2 <= player_count <= 4:
-                    return player_count
-                else:
-                    print('Por favor, ingrese un número entre 2 y 4.')
-                    raise InvalidPlayerCountException("Entrada incorrecta")
-            except ValueError:
-                print('Por favor, ingrese un número válido.')
-
-    # En el código principal (main.py), puedes capturar la excepción así:
-    try:
-        player_count = get_player_count()
-    except InvalidPlayerCountException as e:
-        print(f"Error: {e}")
-

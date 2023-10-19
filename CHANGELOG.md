@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.8] - 2023-10-19
+
+### Added
+
+Update with DockerFile
+
+## [0.2.7] - 2023-10-18
+
+### Changed
+
+We fixed the get_player_count inside main and adjusted the tests so that they work correctly, we also made minimal changes to the other methods.
+
 ## [0.2.6] - 2023-10-17
 
 ### Changed
