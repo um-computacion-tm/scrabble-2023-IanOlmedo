@@ -92,40 +92,35 @@ class Board:
                 self.grid[position_x][position_y + i].add_letter(word[i])
 
         return True
-
+    
     def generate_row_string(self, row, positions, row_index):
-        # Inicializamos una lista para almacenar los valores de cada celda de la fila
         row_values = []
 
-        # Recorremos las celdas en la fila
         for i, cell in enumerate(row):
-            # Verificamos si hay una letra en la celda
-            if cell.letter:
-                # Si hay una letra, agregamos la letra a la lista de valores
+            if isinstance(cell, str):
+                row_values.append(cell)
+            elif isinstance(cell, Tile) and cell.letter:
                 row_values.append(cell.letter.letter)
             else:
-                # Si no hay una letra, verificamos si hay un multiplicador en la celda
                 if cell.multiplier_type == 'DL':
-                    # DL representa Doble Letra, añadimos '2L' a la lista de valores
                     row_values.append('2L')
                 elif cell.multiplier_type == 'TL':
-                    # TL representa Triple Letra, añadimos '3L' a la lista de valores
                     row_values.append('3L')
                 elif cell.multiplier_type == 'DP':
-                    # DP representa Doble Palabra, añadimos '2P' a la lista de valores
                     row_values.append('2P')
                 elif cell.multiplier_type == 'TP':
-                    # TP representa Triple Palabra, añadimos '3P' a la lista de valores
                     row_values.append('3P')
                 else:
-                    # Si no hay letra ni multiplicador, añadimos '-' a la lista de valores
                     row_values.append('-')
 
-        # Convertimos la lista de valores en una cadena de texto
         row_string = ' '.join(row_values)
 
-        # Devolvemos la cadena de texto representando la fila
         return row_string
+
+
+
+
+
 
 
 

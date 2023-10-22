@@ -1,6 +1,8 @@
 import unittest
 from game.board import Board
 from game.models import Tile
+from game.cell import Cell
+
 
 class TestBoard(unittest.TestCase):
     def setUp(self):
@@ -56,6 +58,18 @@ class TestBoard(unittest.TestCase):
         row_str = self.board.generate_row_string(self.board.grid[0], None, 0)
         self.assertEqual(row_str, "P A L A B R A")"""
 
+    def test_generate_row_string_with_letters(self):
+        row = [Tile("P", 1), Tile("A", 1), Tile("L", 1), Tile("A", 1), Tile("B", 1), Tile("R", 1), Tile("A", 1)]
+        self.board.grid[0] = row
+        row_str = self.board.generate_row_string(self.board.grid[0], None, 0)
+        self.assertEqual(row_str, "P A L A B R A")
+
+    def test_generate_row_string_with_multipliers(self):
+        row = [Cell(multiplier_type="DL"), Cell(), Cell(multiplier_type="2L"), Cell(letter=Tile("A", 1))]
+        self.board.grid[1] = row
+        row_str = self.board.generate_row_string(self.board.grid[1], None, 1)
+        self.assertEqual(row_str, "DL - 2L A")
+
+
 if __name__ == '__main__':
     unittest.main()
-

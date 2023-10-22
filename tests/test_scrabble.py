@@ -67,6 +67,32 @@ class TestScrabbleGame(unittest.TestCase):
         self.assertIsNotNone(words)
         self.assertIsInstance(words, list)
 
+    def test_next_turn_starting_game(self):
+        # Validar que al comienzo, el turno es del jugador 0
+        scrabble_game = Scrabble(players_count=3)
+
+        scrabble_game.next_turn()
+
+        self.assertEqual(scrabble_game.current_player, scrabble_game.players[0])
+
+    def test_next_turn_next_player(self):
+        # Validar que luego del jugador 0, le toca al jugador 1
+        scrabble_game = Scrabble(players_count=3)
+        scrabble_game.current_player = scrabble_game.players[0]
+
+        scrabble_game.next_turn()
+
+        self.assertEqual(scrabble_game.current_player, scrabble_game.players[1])
+
+    def test_next_turn_last_player(self):
+        # Suponiendo que tenemos 3 jugadores, luego del jugador 3, le toca al jugador 1
+        scrabble_game = Scrabble(players_count=3)
+        scrabble_game.current_player = scrabble_game.players[2]
+
+        scrabble_game.next_turn()
+
+        self.assertEqual(scrabble_game.current_player, scrabble_game.players[0])
+
     """def test_get_horizontal_word(self):
         # Prueba para obtener una palabra horizontal
         scrabble_game = Scrabble(players_count=3)

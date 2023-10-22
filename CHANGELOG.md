@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.9] - 2023-10-22
+
+### Changed
+
+I redid the generate row string method within the Board class, added new tests to validate these lines (they still don't work). And also try to implement a new test inside test_scrabble.py
+
 ## [0.2.8] - 2023-10-19
 
 ### Added
