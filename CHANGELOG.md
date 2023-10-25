@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.10] - 2023-10-25
+
+### Changed
+
+I redid the generate_board method, applying a lot of content (creation of the board, location of multipliers, etc.). I also made some slight modifications to generate_row_string and tried to make test cases to validate
+
 ## [0.2.9] - 2023-10-22
 
 ### Changed

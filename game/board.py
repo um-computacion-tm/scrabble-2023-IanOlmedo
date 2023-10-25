@@ -1,14 +1,40 @@
-
 from game.models import Tile
-from game.cell import Cell
+from game.cell import Cell  
 
 class Board:
     def __init__(self):
         self.grid = [[Cell() for _ in range(15)] for _ in range(15)]  # Representa el tablero como una matriz de celdas
-        self.initialize_board_multipliers()  # Inicializa los multiplicadores del tablero
+        self.generate_board()  # Inicializa el tablero con los multiplicadores
 
-    def initialize_board_multipliers(self):
-        # Establece los multiplicadores de palabras (DP y TP)
+    def generate_board(self):
+  
+        multiplier_rules = {
+            'DL': [1, 2, 3, 5, 7, 9, 11, 13],
+            'TL': [0, 7, 14],
+            'DW': [0, 7, 14],
+            'TW': [1, 2, 3, 4, 5, 9, 10, 11, 12, 13],
+        }
+        
+        # Tablero con celdas vacias
+        self.grid = [[Cell() for _ in range(15)] for _ in range(15)]
+
+        # Multiplicadores a las celdas
+        for x in range(15):
+            for y in range(15):
+                
+                if x in multiplier_rules['DL'] and y in multiplier_rules['DL']:
+                    self.grid[x][y].multiplier_type = 'DL'
+                elif x in multiplier_rules['TL'] and y in multiplier_rules['TL']:
+                    self.grid[x][y].multiplier_type = 'TL'
+                elif x in multiplier_rules['DW'] and y in multiplier_rules['DW']:
+                    self.grid[x][y].multiplier_type = 'DW'
+                elif x in multiplier_rules['TW'] and y in multiplier_rules['TW']:
+                    self.grid[x][y].multiplier_type = 'TW'
+
+        # Restaurar la casilla central, que siempre es DW (Doble Palabra)
+        self.grid[7][7].multiplier_type = 'DW'
+
+
         word_multipliers = [
             (0, 0), (0, 7), (0, 14),
             (7, 0), (7, 14),
@@ -18,9 +44,9 @@ class Board:
         for position in word_multipliers:
             x, y = position
             self.grid[x][y].multiplier_type = 'word'
-            self.grid[x][y].multiplier = 2 if (x, y) != (7, 7) else 3  # Casilla central es TP, el resto son DP
+            self.grid[x][y].multiplier = 2 if (x, y) != (7, 7) else 3 
 
-        # Establece los multiplicadores de letras (DL y TL)
+   
         letter_multipliers = [
             (1, 1), (1, 13),
             (2, 2), (2, 12),
@@ -36,6 +62,7 @@ class Board:
             x, y = position
             self.grid[x][y].multiplier_type = 'letter'
             self.grid[x][y].multiplier = 2 if (x, y) != (7, 7) else 3  # Casilla central es TL, el resto son DL
+
 
 
     def validate_word_inside_board(self, word, location, orientation):
@@ -96,26 +123,30 @@ class Board:
     def generate_row_string(self, row, positions, row_index):
         row_values = []
 
-        for i, cell in enumerate(row):
-            if isinstance(cell, str):
-                row_values.append(cell)
-            elif isinstance(cell, Tile) and cell.letter:
+        for cell in row:
+            if isinstance(cell, Tile) and cell.letter:
                 row_values.append(cell.letter.letter)
             else:
-                if cell.multiplier_type == 'DL':
-                    row_values.append('2L')
-                elif cell.multiplier_type == 'TL':
-                    row_values.append('3L')
-                elif cell.multiplier_type == 'DP':
-                    row_values.append('2P')
-                elif cell.multiplier_type == 'TP':
-                    row_values.append('3P')
+                if isinstance(cell, Cell):
+                    if cell.letter:
+                        row_values.append(cell.letter.letter)
+                    else:
+                        if cell.multiplier_type == "DL":
+                            row_values.append('2L')
+                        elif cell.multiplier_type == "TL":
+                            row_values.append('3L')
+                        elif cell.multiplier_type == "DW":
+                            row_values.append('2P')
+                        elif cell.multiplier_type == "TW":
+                            row_values.append('3P')
                 else:
                     row_values.append('-')
 
         row_string = ' '.join(row_values)
 
         return row_string
+
+
 
 
 
